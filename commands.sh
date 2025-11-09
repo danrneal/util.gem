@@ -15,3 +15,14 @@ if command -v screens > /dev/null; then
     fi
   )
 fi
+
+if command -v tmuxls > /dev/null; then
+  (
+    tmuxls=$(tmuxls)
+    if [[ -n "$tmuxls" ]]; then
+      echo "Open tmux sessions: $(wc -w <<<"$tmuxls")"
+      echo "  $(tr '\n' ' ' <<<"$tmuxls")"
+    fi
+  )
+fi
+

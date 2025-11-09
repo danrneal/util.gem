@@ -13,6 +13,7 @@ open             common alias for different systems' open-with-default-app
                  command; e.g. `open foo.png`.
 screenopen NAME  opens a screen session with useful defaults; detaches any
                  existing connection and logs the session to /tmp.
+tmuxopen NAME    opens a tmux session, creating or attaching as needed.
 wait_ext         blocks until the PIDs passed as arguments are finished.
 wait_port        blocks until the ports passed as arguments are listening for
                  requests.

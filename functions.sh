@@ -166,6 +166,36 @@ screencmd() {
 }
 fi # if screen is installed
 
+if command -v tmux > /dev/null; then
+# Prints the currently open tmux sessions.
+tmuxls() {
+  tmux list-sessions -F '#S'
+}
+
+# Opens a tmux session with a given name, either creating a new session or
+# attaching to one that already exists.
+tmuxopen() {
+  local session="${1:?Must specify a tmux session name.}"
+  tmux new-session -d -s "$session" 2>/dev/null || true
+  tmux attach-session -t "$session"
+}
+
+# Creates a tmux session (if it doesn't already exist), and then sends
+# the given commands to it.
+tmuxcmd() {
+  local session="${1:?Must specify a tmux session name.}"
+  shift
+  if (( $# == 0 )); then
+    pg::err "Must provide a command to run"
+    return 1
+  fi
+  tmux new-session -d -s "$session" 2>/dev/null || true
+  tmux send-keys -t "$session" "$*" C-m
+  printf "Wrote '%s' to '%s'\nTo open run:\n  tmuxopen '%s'\nthen <Ctrl>+b d to detach.\n" \
+    "$*" "$session" "$session"
+}
+fi # if tmux is installed
+
 # Grep ps command
 # Inspiration: http://www.commandlinefu.com/commands/view/977/
 # Alternately: http://code.google.com/p/psgrep/

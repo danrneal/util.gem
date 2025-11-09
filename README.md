@@ -66,6 +66,9 @@ list of functionality provided.*
     own custom aliases, but `screenopen` gives lay-users easy access to
     `screen`'s key functionality - detachable shell sessions.
 
+*   `tmuxls`, `tmuxopen`, and `tmuxcmd` provide parallel functionality to the 
+    `screen` utilities for users of `tmux`.
+
 *   `gitsyncfork` syncs a Git repository with its upstream master. Useful for
     pulling in updates to a forked GitHub repo.
 
@@ -85,8 +88,8 @@ list of functionality provided.*
 
 ### Behavior
 
-*   Displays the names of any open `screen` sessions when a new shell is
-    launched.
+*   Displays the names of any open `screen` or `tmux` sessions when a new shell
+    is launched.
 
 ## Copyright and License
 
