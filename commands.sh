@@ -18,7 +18,7 @@ fi
 
 if command -v tmuxls > /dev/null; then
   (
-    tmuxls=$(tmuxls)
+    tmuxls=$(tmuxls 2>/dev/null)
     if [[ -n "$tmuxls" ]]; then
       echo "Open tmux sessions: $(wc -w <<<"$tmuxls")"
       echo "  $(tr '\n' ' ' <<<"$tmuxls")"
